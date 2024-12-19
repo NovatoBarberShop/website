@@ -1,0 +1,242 @@
+body {
+    margin: 0;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+/* Estilos del header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%); /* Centrar en el dispositivo */
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    width: 90%; /* Ajuste para adaptarse a diferentes tamaños de pantalla */
+}
+
+header .logo img {
+    height: 50px;
+}
+
+.navbar {
+    opacity: 1;
+    visibility: hidden;
+    color: black;
+    left: 50%;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #dba14b;
+}
+
+/* Estilos del menú de hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #000;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+    header {
+        width: 100%; /* El header ocupa el 100% del ancho en dispositivos pequeños */
+        left: 0;
+        transform: none;
+    }
+
+
+    .navbar.active {
+        display: flex; /* Mostrar el menú cuando está activo */
+    }
+
+    .menu-toggle {
+        display: flex; /* Mostrar el menú de hamburguesa */
+    }
+
+    .logo img {
+        margin-top: 1vh;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 110%; /* Justo debajo del header */
+        left: 80%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 10px;
+        opacity: 0; /* Invisible al inicio */
+        transition: opacity 0.5s ease, visibility 0.5s ease; /* Transición suave */
+        z-index: 999;
+        visibility: hidden; /* Oculta visualmente pero conserva el espacio */
+    }
+    
+    .navbar.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto; /* Habilita interactividad */
+    }
+    
+
+
+    .navbar ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column; /* Forzar lista en vertical */
+        align-items: center; /* Centrar elementos */
+    }
+
+    .navbar li {
+        margin: 10px 0; /* Espaciado entre los ítems */
+    }
+
+    .navbar a {
+        display: inline-block; /* Solo ocupa el espacio del texto */
+        padding: 10px 15px; /* Espaciado alrededor del texto */
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000000;
+        border-radius: 5px; /* Bordes redondeados */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background-color: #dba14b;
+        color: #ffffff;
+    }
+
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none; /* Ocultar el menú de hamburguesa en pantallas grandes */
+    }
+
+    .navbar {
+        opacity: 1; /* Hacer visible la barra de navegación */
+        visibility: visible; /* Asegurar que sea visible */
+        pointer-events: auto; /* Permitir interacciones */
+    }
+}
+
+/* Estilos para los medios */
+.media-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.desktop-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Ocultar las imágenes en dispositivos móviles */
+@media (max-width: 767px) {
+    .desktop-image {
+        display: none;
+    }
+    .overlay {
+        display: none;
+    }
+    video {
+        display: flex;
+    }
+
+    header {
+        width: 80%;
+        height: 4vh;
+        left: 50%;
+        transform: translateX(-50%);
+        
+    }
+}
+
+/* Estilos para dispositivos grandes */
+@media (min-width: 768px) {
+    video {
+        display: none;
+    }
+
+    .desktop-image {
+        display: block;
+    }
+}
